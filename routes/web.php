@@ -15,12 +15,12 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
-Route::get('/', function () {
-    return view('hello');
-});
+// Route::get('/', function () {
+//     return view('hello');
+// });
 
  
-Route::get('/products', [ProductsController::class, 'index']);
+Route::get('/', [ProductsController::class, 'index']);
 Route::get('/cart', [CartController::class, 'index']);
 Route::post('/midtrans-callback', [CartController::class, 'callback']);
 

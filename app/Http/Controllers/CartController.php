@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Products;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -93,9 +94,14 @@ class CartController extends Controller
     }
 
     public function checkout(Request $request) {
+        Validator::make($request->all(), [
+            'fullname' => 'required',
+            'phone' => 'required',
+        ])->validate();
+
         // dd($request->all());
         $order = Order::create([
-            'fullname' => $request->name,
+            'fullname' => $request->fullname,
             'total_price' => $request->total,
             'payment_status' => 1,
         ]);
